@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="chzu.performance.mapper.UserMapper">
+	<!-- 以下与实体类的中字段一致 -->
+	<sql id="selectuser">
+		userId,
+		userName,
+		(select r.name from role r where id in (SELECT ur.role_id FROM user_role ur
+		WHERE ur.user_id=userId)) roleName,
+		userPassword,
+		userNickname,
+		userRealname,
+		userAge,
+		userSex,
+		userAddress,
+		userPhone,
+		userMail,
+		userQQ,
+		regTime,
+		level,
+		province,
+		city,
+		bankName,
+		branchBank,
+		subbranchBank,
+		openBankName,
+		bankAccountName,
+		bankAccount,
+		accountType,
+		pay,
+		mark,
+		status,
+		parentNumber
+	</sql>
+	<!-- 根据用户名和密码获取用户 -->
+	<select id="querySingleUser" parameterType="User" resultType="User">
+		select 
+		<include refid="selectuser"/>
+		from user u where u.userName = #{username} and u.userPassword = #{userpassword}
+	</select>
+	<!-- 总记录数 -->
+	<select id="count" parameterType="User" resultType="int">
+		select count(0) from user
+		<where>
+			<if test="userName != null and userName != ''">
+				userName like '%${userName}%'
+				</if>
+			<if test="userNickname != null and userNickname != ''">
+				and userNickname like '%${userNickname}%'
+				</if>
+		</where>
+	</select>
+	<!-- 增加用户 -->
+	<insert id="save" parameterType="User">
+		insert into user( userName,
+		userPassword,
+		userNickname, userRealname,
+		userAge, userSex, userAddress,
+		userPhone,
+		userMail, userQQ, level,
+		province,
+		city,
+		bankName,
+		branchBank,
+		subbranchBank,
+		openBankName,
+		bankAccountName,
+		bankAccount,
+		accountType,
+		pay,
+		mark,
+		status,
+		parentNumber )
+		values (#{userName},
+		#{userPassword},
+		#{userNickname}, #{userRealname},
+		#{userAge},
+		#{userSex},
+		#{userAddress}, #{userPhone}, #{userMail},
+		#{userQQ},
+		#{level},
+		#{province},
+		#{city},
+		#{bankName}, #{branchBank},
+		#{subbranchBank},
+		#{openBankName},
+		#{bankAccountName}, #{bankAccount}, #{accountType},
+		#{pay},
+		#{mark},#{status},
+		#{parentNumber})
+	</insert>
+	<!-- 根据用户名查出userId -->
+	<select id="querySingleUserByName" parameterType="String" resultType="User">
+	  select
+	  <include refid="selectuser"/>
+	  from user where userName=#{userName}
+	</select>
+</mapper>
