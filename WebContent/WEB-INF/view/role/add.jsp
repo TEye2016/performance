@@ -145,7 +145,7 @@
 			 *从左至右全部添加
 			 */
 			document.getElementById("addAll").onclick = function() {
-				for (var i = 0; i < length; i++)
+				for (var i = 0; i <= length; i++)
 					rightElement.appendChild(optionElements[0]);
 			}
 			/**
