@@ -13,8 +13,12 @@
 		<property name="initialPoolSize" value="${jdbc.initPoolSize}"/>
 		<property name="maxPoolSize" value="${jdbc.maxPoolSize}"/>
 	</bean>
+	<bean id="paginationInterceptor" class="chzu.performance.interceptor.PaginationInterceptor"></bean>
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
+		<property name="plugins">  
+            <ref bean="paginationInterceptor"/>  
+        </property> 
 		<property name="configLocation" value="classpath:mybatis/SqlMapConfig.xml"/>
 	</bean>
 	<!-- mybatis扫描器 -->

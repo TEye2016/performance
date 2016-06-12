@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,7 +15,7 @@
 				<label class="form-label col-3"><span class="c-red">*</span>角色名称：</label>
 				<div class="formControls col-4">
 					<input type="text" class="input-text" placeholder="" name="name"
-						datatype="*2-16" nullmsg="用户名不能为空">
+						id="name" datatype="*2-16" nullmsg="用户名不能为空">
 				</div>
 				<div class="col-4"></div>
 			</div>
@@ -22,21 +23,7 @@
 				<label class="form-label col-3"><span class="c-red">*</span>角色Key：</label>
 				<div class="formControls col-5">
 					<input type="text" class="input-text" placeholder="格式如Admin、User"
-						name="roleKey" datatype="m" nullmsg="角色key不能为空">
-				</div>
-				<div class="col-4"></div>
-			</div>
-			<div class="row cl">
-				<label class="form-label col-3"><span class="c-red">*</span>角色是否激活：</label>
-				<div class="formControls col-5 skin-minimal">
-					<div class="radio-box">
-						<input type="radio" id="sex-1" name="enable" value="1"
-							datatype="*" nullmsg="请选择是否激活！"> <label for="sex-1">激活</label>
-					</div>
-					<div class="radio-box">
-						<input type="radio" id="sex-2" name="enable" value="0"> <label
-							for="sex-2">不激活</label>
-					</div>
+						id="roleKey" name="roleKey" datatype="m" nullmsg="角色key不能为空">
 				</div>
 				<div class="col-4"></div>
 			</div>
@@ -44,8 +31,8 @@
 				<label class="form-label col-3">角色描述：</label>
 				<div class="formControls col-5">
 					<textarea name="description" cols="" rows="" class="textarea"
-						placeholder="描述一下所添加的角色...最少输入10个字符" datatype="*10-100"
-						dragonfly="true" nullmsg="备注不能为空！"
+						id="description" placeholder="描述一下所添加的角色...最少输入10个字符"
+						datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！"
 						onKeyUp="textarealength(this,100)"></textarea>
 					<p class="textarea-numberbar">
 						<em class="textarea-length">0</em>/100
@@ -57,27 +44,35 @@
 				<label class="form-label col-3">角色赋权：</label>
 				<div class="formControls col-5">
 					<table class="table table-border table-bordered">
-					<tr><td>系统权限</td><td></td><td>角色拥有权限</td></tr>
+						<tr>
+							<td>系统权限</td>
+							<td></td>
+							<td>角色拥有权限</td>
+						</tr>
 						<tr>
 							<td width="100px">
 								<!--multiple="multiple" 能同时选择多个   size="10"  确定下拉选的长度--> <select
 								multiple="multiple" size="10" id="left" style="width: 100%">
-									<option value="雍州">雍州</option>
-									<option value="豫州">豫州</option>
-									<option value="兖州">兖州</option>
-									<option value="青州">青州</option>
+									<c:forEach items="${resources }" var="r">
+										<option value="${r.id }">${r.name }</option>
+									</c:forEach>
 							</select>
 							</td>
-							<td width="8px" valign="middle"><input type="button"
-								id="add" value="&nbsp;&nbsp;add&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" class="btn btn-secondary-outline radius"> <input
-								type="button" id="addAll" class="btn btn-secondary-outline radius"
-								value="&nbsp;&nbsp;add&nbsp;All&nbsp;&nbsp;&nbsp;&nbsp;"> <input type="button" id="remove"
-								class="btn btn-secondary-outline radius" value="&nbsp;&nbsp;remove&nbsp;&nbsp;&nbsp;"> <input
-								type="button" id="removeAll" class="btn btn-secondary-outline radius"
+							<td width="8" valign="middle"><input type="button" id="add"
+								value="&nbsp;&nbsp;add&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+								class="btn btn-secondary-outline radius" style="width: 100%">
+								<input type="button" id="addAll"
+								class="btn btn-secondary-outline radius" style="width: 100%"
+								value="&nbsp;&nbsp;add&nbsp;All&nbsp;&nbsp;&nbsp;&nbsp;">
+								<input type="button" id="remove"
+								class="btn btn-secondary-outline radius"
+								value="&nbsp;&nbsp;remove&nbsp;&nbsp;&nbsp;" style="width: 100%">
+								<input type="button" id="removeAll"
+								class="btn btn-secondary-outline radius" style="width: 100%"
 								value="remove All"></td>
 							<td width="100px" align="left"><select multiple="multiple"
 								size="10" id="right" style="width: 100%">
-									<option value="徐州">徐州</option>
+									<option value=""></option>
 							</select></td>
 						</tr>
 					</table>
@@ -158,15 +153,19 @@
 			}
 			document.getElementById("submit").onclick = function() {
 				var len2 = rightElement.getElementsByTagName("option").length;
-				//	      alert("aaa")
 				var optionValue;
-				for (var i = 0; i < len2; i++) {
+				for (var i = 1; i < len2; i++) {
 					if (optionValue == null)
-						optionValue = rightoptions[i].value + "-";
+						optionValue = rightoptions[i].value + ",";
 					else
-						optionValue += rightoptions[i].value + "-";
+						optionValue += rightoptions[i].value + ",";
 				}
-				alert(optionValue)
+				var name = document.getElementById("name").value;
+				var roleKey = document.getElementById("roleKey").value;
+				var description = document.getElementById("description").value;
+				$.post("role/save.action",{"name":name,"roleKey":roleKey,"description":description},function(data){
+					
+				},"text/json");
 			}
 		}
 	</script>
