@@ -33,7 +33,7 @@
 <meta name="description" content="">
 </head>
 <body>
-<header class="Hui-header cl"> <a class="Hui-logo l" title="教师绩效管理系统" href="/">计算机与信息工程学院</a> <a class="Hui-logo-m l" href="/" title="H-ui.admin"></a> <span class="Hui-subtitle l"></span> <span class="Hui-userbox"><span class="c-white">超级管理员：admin</span> <a class="btn btn-danger radius ml-10" href="#" title="退出"><i class="icon-off"></i> 退出</a></span> <a aria-hidden="false" class="Hui-nav-toggle" href="#"></a> </header>
+<header class="Hui-header cl"> <a class="Hui-logo l" title="教师绩效管理系统" href="/">计算机与信息工程学院</a> <a class="Hui-logo-m l" href="/" title="H-ui.admin"></a> <span class="Hui-subtitle l"></span> <span class="Hui-userbox"><span class="c-white">欢迎：${sessionScope.userSession.userrealname }</span> <a class="btn btn-danger radius ml-10" href="${pageContext.request.contextPath }/user/loginOut.action" title="退出"><i class="icon-off"></i> 退出</a></span> <a aria-hidden="false" class="Hui-nav-toggle" href=""></a> </header>
 <aside class="Hui-aside">
   <input runat="server" id="divScrollValue" type="hidden" value="" />
   <div class="menu_dropdown bk_2">

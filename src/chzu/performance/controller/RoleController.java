@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import chzu.performance.entity.Resources;
 import chzu.performance.entity.Role;
 import chzu.performance.service.ResourcesService;
 import chzu.performance.service.RoleService;
@@ -21,8 +22,8 @@ public class RoleController {
 	@RequestMapping("/add")
 	public ModelAndView add() {
 		ModelAndView m = new ModelAndView("role/add");
-		HandlerResult rs = resourcesService.findAll();
-		m.addObject("resources",rs.getResultObj());
+		List<Resources> resources = resourcesService.findAll();
+		m.addObject("resources",resources);
 		return m;
 	}
 	@RequestMapping("/findAll")

@@ -10,7 +10,9 @@ import chzu.performance.util.HandlerResult;
  *
  */
 public interface ResourcesService {
-	public HandlerResult findAll();
+	public HandlerResult findAllByPage();
+	public List<Resources> findAll();
+	
 
 	/**
 	 * 根据用户Id获取该用户的权限

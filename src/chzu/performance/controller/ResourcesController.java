@@ -67,7 +67,7 @@ public class ResourcesController {
 			page.setTotalRows(Integer.parseInt(totalRows));
 		}
 		page.setPagination(true);
-		HandlerResult rs = resourcesService.findAll();
+		HandlerResult rs = resourcesService.findAllByPage();
 		ModelAndView mv = new ModelAndView("resources/list");
 		mv.addObject("resources", rs.getResultObj());
 		mv.addObject("page", page);

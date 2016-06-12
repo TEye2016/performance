@@ -18,9 +18,9 @@ public class ResourcesServiceImpl implements ResourcesService {
 	 * 采用本地线程的方式分页
 	 * @return
 	 */
-	public HandlerResult findAll() {
+	public HandlerResult findAllByPage() {
 			HandlerResult rs = new HandlerResult();
-			rs.setResultObj(resourcesMapper.findAll());
+			rs.setResultObj(resourcesMapper.findAllByPage());
 			return rs;
 	}
 
@@ -47,6 +47,11 @@ public class ResourcesServiceImpl implements ResourcesService {
 	@Override
 	public void saveResources(Resources r) {
 		this.resourcesMapper.saveResources(r);
+	}
+
+	@Override
+	public List<Resources> findAll() {
+		return this.resourcesMapper.findAll();
 	}
 
 }

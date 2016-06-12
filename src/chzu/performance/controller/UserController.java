@@ -59,4 +59,9 @@ public class UserController {
 	public String main(){
 		return "welcome";
 	}
+	@RequestMapping("/loginOut")
+	public String loginOut(HttpServletRequest request){
+		request.getSession().invalidate();
+		return "login";
+	}
 }

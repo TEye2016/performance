@@ -2,46 +2,58 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="chzu.performance.mapper.ResourcesMapper">
 	<sql id="selectId">
-	id,
-	name,
-	parentId,
-	(select r.name from resources r where r.id = resources.parentId ) parentName,
-	resKey,
-	type,
-	resUrl,
-	level,
-	description
+		id,
+		name,
+		parentId,
+		(select r.name from resources r where r.id = resources.parentId ) parentName,
+		resKey,
+		type,
+		resUrl,
+		level,
+		description
 	</sql>
 	<select id="findAll" resultType="Resources">
 		select
 		<include refid="selectId" />
 		from resources order By id asc
 	</select>
-	<!-- 根据用户Id获取该用户的权限-->
+	<!-- 根据用户Id获取该用户的权限 -->
 	<select id="getUserResources" parameterType="String" resultType="Resources">
-		SELECT 
+		SELECT
 		<include refid="selectId" />
 		FROM resources WHERE id in(
 		SELECT resc_id FROM
-		resources_role WHERE role_id in(
+		resources_role WHERE
+		role_id in(
 		SELECT role_id FROM user_role
 		WHERE user_id=#{id}))
 	</select>
-	<!-- 根据角色名称获取该角色的权限-->
-	<select id="getResourcesByUserName" parameterType="String" resultType="Resources">
-		SELECT 
+	<!-- 根据角色名称获取该角色的权限 -->
+	<select id="getResourcesByUserName" parameterType="String"
+		resultType="Resources">
+		SELECT
 		<include refid="selectId" />
 		FROM resources WHERE id in(
 		SELECT resc_id FROM
-		resources_role WHERE role_id in(
+		resources_role WHERE
+		role_id in(
 		SELECT role_id FROM user_role,user
-		WHERE user_id=userId and username=#{username}))
+		WHERE user_id=userId and
+		username=#{username}))
 	</select>
 	<select id="getParentRsources" resultType="Resources">
-		select r.name,r.id from resources as r where r.parentid = 1010;
+		select r.name,r.id
+		from resources as r where r.parentid = 1010;
 	</select>
 	<insert id="saveResources" parameterType="Resources">
-		insert into resources (name,parentId,resKey,type,resUrl,level,description)
-		values (#{name},#{parentid},#{reskey},#{type},#{resurl},#{level},#{description})
+		insert into resources
+		(name,parentId,resKey,type,resUrl,level,description)
+		values
+		(#{name},#{parentid},#{reskey},#{type},#{resurl},#{level},#{description})
 	</insert>
+	<select id="findAllByPage" resultType="Resources">
+		select
+		<include refid="selectId" />
+		from resources order By id asc
+	</select>
 </mapper>

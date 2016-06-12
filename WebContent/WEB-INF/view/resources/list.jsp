@@ -59,35 +59,36 @@
 				</tr>
 			</thead>
 			<tbody>
-			<c:forEach items="${ resources}" var="r">
-				<tr class="text-c">
-					<td><input type="checkbox" value="" name=""></td>
-					<td>${r.id }</td>
-					<td class="text-l"><u style="cursor: pointer"
-						class="text-primary"
-						onClick="article_edit('10001','650','','查看','article-zhang.html')"
-						title="查看">${r.name }</u></td>
-					<td><c:if test="${r.type eq 0  }">目录</c:if>
-						<c:if test="${r.type eq 1  }">菜单</c:if>
-						<c:if test="${r.type eq 2  }">按钮</c:if></td>
-					<td>${r.resurl }</td>
-					<td class="f-14 article-manage"><a
-						style="text-decoration: none"
-						onClick="article_xiajia(this,'10001')" href="javascript:;"
-						title="删除"><i class="icon-hand-down"></i></a> <a
-						style="text-decoration: none" class="ml-5"
-						onClick="article_edit('10001','','','资讯编辑','article-edit.html')"
-						href="javascript:;" title="修改"><i class="icon-edit"></i></a> <a
-						style="text-decoration: none" class="ml-5"
-						onClick="article_del(this,'10001')" href="javascript:;" title="删除"><i
-							class="icon-trash"></i></a></td>
-				</tr>
+				<c:forEach items="${ resources}" var="r">
+					<tr class="text-c">
+						<td><input type="checkbox" value="" name=""></td>
+						<td>${r.id }</td>
+						<td class="text-l"><u style="cursor: pointer"
+							class="text-primary"
+							onClick="article_edit('10001','650','','查看','article-zhang.html')"
+							title="查看">${r.name }</u></td>
+						<td><c:if test="${r.type eq 0  }">目录</c:if> <c:if
+								test="${r.type eq 1  }">菜单</c:if> <c:if test="${r.type eq 2  }">按钮</c:if></td>
+						<td>${r.resurl }</td>
+						<td class="f-14 article-manage"><a
+							style="text-decoration: none"
+							onClick="article_xiajia(this,'10001')" href="javascript:;"
+							title="删除"><i class="icon-hand-down"></i></a> <a
+							style="text-decoration: none" class="ml-5"
+							onClick="article_edit('10001','','','资源编辑','article-edit.html')"
+							href="javascript:;" title="修改"><i class="icon-edit"></i></a> <a
+							style="text-decoration: none" class="ml-5"
+							onClick="article_del(this,'10001')" href="javascript:;"
+							title="删除"><i class="icon-trash"></i></a></td>
+					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
-		 <form action="${pageContext.request.contextPath }/resources/findAll.action" name="pagedForm">
-		<div id="pageNav" class="pageNav">${page.pagedView}</div>
-		 </form>
+			<form
+				action="${pageContext.request.contextPath }/resources/findAll.action"
+				name="pagedForm">
+				<div id="pageNav" class="pageNav">${page.pagedView}</div>
+			</form>
 	</div>
 	<script type="text/javascript" src="../lib/jquery.min.js"></script>
 	<script type="text/javascript" src="../lib/layer1.8/layer.min.js"></script>

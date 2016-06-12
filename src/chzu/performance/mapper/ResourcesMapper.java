@@ -6,6 +6,7 @@ import chzu.performance.entity.Resources;
 
 public interface ResourcesMapper extends SqlMapper {
 	public List<Resources> findAll();
+	public List<Resources> findAllByPage();
 
 	/**
 	 * 根据用户Id获取该用户的权限
