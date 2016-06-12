@@ -8,13 +8,20 @@ import org.springframework.stereotype.Service;
 import chzu.performance.entity.Resources;
 import chzu.performance.mapper.ResourcesMapper;
 import chzu.performance.service.ResourcesService;
+import chzu.performance.util.HandlerResult;
 @Service("resourcesService")
 public class ResourcesServiceImpl implements ResourcesService {
 	@Autowired
 	private ResourcesMapper resourcesMapper;
 	@Override
-	public List<Resources> findAll() {
-		return this.resourcesMapper.findAll();
+	/**
+	 * 采用本地线程的方式分页
+	 * @return
+	 */
+	public HandlerResult findAll() {
+			HandlerResult rs = new HandlerResult();
+			rs.setResultObj(resourcesMapper.findAll());
+			return rs;
 	}
 
 	@Override

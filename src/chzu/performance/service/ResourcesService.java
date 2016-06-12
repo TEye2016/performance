@@ -3,13 +3,14 @@ package chzu.performance.service;
 import java.util.List;
 
 import chzu.performance.entity.Resources;
+import chzu.performance.util.HandlerResult;
 /**
  * 资源操作相关
  * @author tomcat
  *
  */
 public interface ResourcesService {
-	public List<Resources> findAll();
+	public HandlerResult findAll();
 
 	/**
 	 * 根据用户Id获取该用户的权限

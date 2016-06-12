@@ -41,7 +41,7 @@
 			<span class="l"><a href="javascript:;" onclick="datadel()"
 				class="btn btn-danger radius"><i class="icon-trash"></i> 批量删除</a> <a
 				class="btn btn-primary radius"
-				onclick="article_add('','','添加资讯','article-add.html')"
+				onclick="article_add('','','添加资源','${pageContext.request.contextPath}/resources/add.action')"
 				href="javascript:;"><i class="icon-plus"></i> 添加资资源</a></span> <span
 				class="r">共有数据：<strong></strong> 条
 			</span>
@@ -52,9 +52,9 @@
 				<tr class="text-c">
 					<th width="25"><input type="checkbox" name="" value=""></th>
 					<th width="80">资源编号</th>
-					<th>资源名称</th>
+					<th width="100">资源名称</th>
 					<th width="80">资源类型</th>
-					<th width="80">资源URL</th>
+					<th width="100">资源URL</th>
 					<th width="70">操作</th>
 				</tr>
 			</thead>
@@ -74,10 +74,10 @@
 					<td class="f-14 article-manage"><a
 						style="text-decoration: none"
 						onClick="article_xiajia(this,'10001')" href="javascript:;"
-						title="下架"><i class="icon-hand-down"></i></a> <a
+						title="删除"><i class="icon-hand-down"></i></a> <a
 						style="text-decoration: none" class="ml-5"
 						onClick="article_edit('10001','','','资讯编辑','article-edit.html')"
-						href="javascript:;" title="编辑"><i class="icon-edit"></i></a> <a
+						href="javascript:;" title="修改"><i class="icon-edit"></i></a> <a
 						style="text-decoration: none" class="ml-5"
 						onClick="article_del(this,'10001')" href="javascript:;" title="删除"><i
 							class="icon-trash"></i></a></td>
@@ -85,14 +85,15 @@
 				</c:forEach>
 			</tbody>
 		</table>
-		<div id="pageNav" class="pageNav"></div>
+		 <form action="${pageContext.request.contextPath }/resources/findAll.action" name="pagedForm">
+		<div id="pageNav" class="pageNav">${page.pagedView}</div>
+		 </form>
 	</div>
 	<script type="text/javascript" src="../lib/jquery.min.js"></script>
 	<script type="text/javascript" src="../lib/layer1.8/layer.min.js"></script>
 	<script type="text/javascript" src="../lib/laypage/laypage.js"></script>
 	<script type="text/javascript"
 		src="../lib/My97DatePicker/WdatePicker.js"></script>
-	<script type="text/javascript" src="../lib/jquery.dataTables.min.js"></script>
 	<script type="text/javascript" src="../js/H-ui.js"></script>
 	<script type="text/javascript" src="../js/H-ui.admin.js"></script>
 	<script type="text/javascript" src="../js/H-ui.admin.doc.js"></script>

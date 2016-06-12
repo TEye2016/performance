@@ -4,7 +4,7 @@ import java.util.List;
 
 import chzu.performance.entity.Resources;
 
-public interface ResourcesMapper {
+public interface ResourcesMapper extends SqlMapper {
 	public List<Resources> findAll();
 
 	/**
