@@ -79,7 +79,7 @@
 							onClick="article_edit('10001','','','资源编辑','article-edit.html')"
 							href="javascript:;" title="修改"><i class="icon-edit"></i></a> <a
 							style="text-decoration: none" class="ml-5"
-							onClick="article_del(this,'10001')" href="javascript:;"
+							onClick="article_del(this,'${r.id}')" href="javascript:;"
 							title="删除"><i class="icon-trash"></i></a></td>
 					</tr>
 				</c:forEach>
@@ -137,6 +137,16 @@
 			} else {
 				layer.msg('至少选择一项!', 1);
 			}
+		}
+		function article_del(obj,id){
+			layer.confirm('确认要删除吗？',function(index){
+				//$(obj).parents("tr").remove();
+				layer.msg('正在删除删除!',1);
+				alert(id)
+				$.post("deleteByid.action",{"id":id},function(data){
+					alert(data)
+				},"text/json");
+			});
 		}
 	</script>
 </body>

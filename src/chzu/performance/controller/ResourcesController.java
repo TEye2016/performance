@@ -1,7 +1,9 @@
 package chzu.performance.controller;
 
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +19,7 @@ import chzu.performance.entity.Resources;
 import chzu.performance.service.ResourcesService;
 import chzu.performance.util.HandlerResult;
 import chzu.performance.util.PageContext;
+import chzu.performance.util.PageHelper;
 
 /**
  * 资源管理相关的控制器
@@ -57,19 +60,20 @@ public class ResourcesController {
 		String totalPages = request.getParameter("totalPages");
 		String totalRows = request.getParameter("totalRows");
 		// 方法2：不用进行map传参，用ThreadLocal进行传参,方便没有侵入性
-		PageContext page = PageContext.getContext();
-
-		// 请自行验证
-		if (null == pagec) {
-			page.setCurrentPage(1);
-			page.setPageSize(10);
-		} else {
-			page.setCurrentPage(Integer.parseInt(pagec));
-			page.setPageSize(Integer.parseInt(pageSize));
-			page.setTotalPages(Integer.parseInt(totalPages));
-			page.setTotalRows(Integer.parseInt(totalRows));
-		}
-		page.setPagination(true);
+//		PageContext page = PageContext.getContext();
+//
+//		// 请自行验证
+//		if (null == pagec) {
+//			page.setCurrentPage(1);
+//			page.setPageSize(10);
+//		} else {
+//			page.setCurrentPage(Integer.parseInt(pagec));
+//			page.setPageSize(Integer.parseInt(pageSize));
+//			page.setTotalPages(Integer.parseInt(totalPages));
+//			page.setTotalRows(Integer.parseInt(totalRows));
+//		}
+//		page.setPagination(true);
+		PageContext page = new PageHelper(pagec, pageSize, totalPages, totalRows).getPage();
 		HandlerResult rs = resourcesService.findAllByPage();
 		ModelAndView mv = new ModelAndView("resources/list");
 		mv.addObject("resources", rs.getResultObj());
@@ -80,5 +84,12 @@ public class ResourcesController {
 	public String delete(String ids) throws Exception{
 		this.resourcesService.deleteByIds(ids);
 		return "redirect:findAll.action";
+	}
+	@RequestMapping("/deleteByid")
+	public @ResponseBody Map<String, Object> deleteByid(String id) throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		this.resourcesService.deleteByIds(id);
+		
+		return map;
 	}
 }
