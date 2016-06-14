@@ -26,8 +26,9 @@
 <title>添加资源</title>
 </head>
 <div class="pd-20">
-	<form action="${pageContext.request.contextPath }/resources/save.action" method="post" class="form form-horizontal"
-		id="form-user-add">
+	<form
+		action="${pageContext.request.contextPath }/resources/save.action"
+		method="post" class="form form-horizontal" id="form-user-add">
 		<div class="row cl">
 			<label class="form-label col-3">上级资源：</label>
 			<div class="formControls col-5">
@@ -53,8 +54,9 @@
 		<div class="row cl">
 			<label class="form-label col-3"><span class="c-red">*</span>资源URL：</label>
 			<div class="formControls col-5">
-				<input type="text" class="input-text" value="" placeholder="格式如：resources/save.action"
-					id="" name="resurl" datatype="*2-36" nullmsg="资源URL">
+				<input type="text" class="input-text" value=""
+					placeholder="格式如：resources/save.action" id="" name="resurl"
+					datatype="*2-36" nullmsg="资源URL">
 			</div>
 			<div class="col-4"></div>
 		</div>
@@ -96,6 +98,13 @@
 				</p>
 			</div>
 			<div class="col-4"></div>
+		</div>
+		<div class="row cl">
+			<div class="col-9 col-offset-3">
+				<c:if test="${not empty message }">
+					<b style="color: red">${message }</b>
+				</c:if>
+			</div>
 		</div>
 		<div class="row cl">
 			<div class="col-9 col-offset-3">

@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import chzu.performance.entity.Resources;
@@ -38,9 +40,10 @@ public class ResourcesController {
 	}
 
 	@RequestMapping("/save")
-	public String save(Resources r) {
+	public String save(Resources r,HttpServletRequest request) {
 		this.resourcesService.saveResources(r);
-		return "redirect:/resources/findAll.action";
+		request.setAttribute("message", "添加成功！");
+		return "resources/addresc";
 	}
 
 	@RequestMapping("/findAll")
@@ -72,5 +75,10 @@ public class ResourcesController {
 		mv.addObject("resources", rs.getResultObj());
 		mv.addObject("page", page);
 		return mv;
+	}
+	@RequestMapping("/delete")
+	public String delete(String ids) throws Exception{
+		this.resourcesService.deleteByIds(ids);
+		return "redirect:findAll.action";
 	}
 }

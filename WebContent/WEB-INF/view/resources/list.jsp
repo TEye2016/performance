@@ -61,7 +61,8 @@
 			<tbody>
 				<c:forEach items="${ resources}" var="r">
 					<tr class="text-c">
-						<td><input type="checkbox" value="" name=""></td>
+						<td><input type="checkbox" value="${r.id }" name="ids"
+							class="ids"></td>
 						<td>${r.id }</td>
 						<td class="text-l"><u style="cursor: pointer"
 							class="text-primary"
@@ -84,11 +85,14 @@
 				</c:forEach>
 			</tbody>
 		</table>
-			<form
-				action="${pageContext.request.contextPath }/resources/findAll.action"
-				name="pagedForm">
-				<div id="pageNav" class="pageNav">${page.pagedView}</div>
-			</form>
+		<form
+			action="${pageContext.request.contextPath }/resources/findAll.action"
+			name="pagedForm">
+			<div id="pageNav" class="pageNav">${page.pagedView}</div>
+		</form>
+		<form id="su" action="${pageContext.request.contextPath}/resources/delete.action">
+			<input type="hidden" name="ids" id="hid" value="1212">
+		</form>
 	</div>
 	<script type="text/javascript" src="../lib/jquery.min.js"></script>
 	<script type="text/javascript" src="../lib/layer1.8/layer.min.js"></script>
@@ -98,23 +102,6 @@
 	<script type="text/javascript" src="../js/H-ui.js"></script>
 	<script type="text/javascript" src="../js/H-ui.admin.js"></script>
 	<script type="text/javascript" src="../js/H-ui.admin.doc.js"></script>
-	<script type="text/javascript">
-		$('.table-sort').dataTable({
-			"lengthMenu" : false,//显示数量选择 
-			"bFilter" : false,//过滤功能
-			"bPaginate" : false,//翻页信息
-			"bInfo" : false,//数量信息
-			"aaSorting" : [ [ 1, "desc" ] ],//默认第几个排序
-			"bStateSave" : true,//状态保存
-			"aoColumnDefs" : [
-			//{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-			{
-				"orderable" : false,
-				"aTargets" : [ 0, 8 ]
-			} // 制定列不参与排序
-			]
-		});
-	</script>
 	<script>
 		var _hmt = _hmt || [];
 		(function() {
@@ -129,6 +116,28 @@
 				.write(unescape("%3Cscript src='"
 						+ _bdhmProtocol
 						+ "hm.baidu.com/h.js%3F080836300300be57b7f34f4b3e97d911' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+	<script type="text/javascript">
+		function datadel() {
+			var a = 0;
+			var ids = "";
+			var input = $(".ids");
+			for (var i = 0; i < input.length; i++) {
+				if (input[i].checked) {
+					ids += input[i].value + ",";
+					a++;
+				}
+			}
+			if (a > 0) {
+				layer.confirm('确认要删除吗？', function(index) {
+					ids = ids.substring(0, ids.lastIndexOf(","));
+					document.getElementById("hid").value=ids;
+					$("#su").submit();
+				})
+			} else {
+				layer.msg('至少选择一项!', 1);
+			}
+		}
 	</script>
 </body>
 </html>

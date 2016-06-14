@@ -1,5 +1,6 @@
 package chzu.performance.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +53,19 @@ public class ResourcesServiceImpl implements ResourcesService {
 	@Override
 	public List<Resources> findAll() {
 		return this.resourcesMapper.findAll();
+	}
+
+	@Override
+	public void deleteByIds(String ids){
+		if(ids != null){
+			String[] id = ids.split(",");
+			List<Integer> list = new ArrayList<>();
+			for (String string : id) {
+				Integer s = Integer.valueOf(string);
+				list.add(s);
+			}
+			this.resourcesMapper.deleteByIds(list);
+		}
 	}
 
 }

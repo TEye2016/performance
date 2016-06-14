@@ -49,4 +49,5 @@ public interface ResourcesService {
 	 * @param r
 	 */
 	public void saveResources(Resources r);
+	public void deleteByIds(String ids)throws Exception;
 }

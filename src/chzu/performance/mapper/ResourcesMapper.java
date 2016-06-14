@@ -39,4 +39,5 @@ public interface ResourcesMapper extends SqlMapper {
 	 */
 	public List<Resources> getParentRsources();
 	public void saveResources(Resources r);
+	public void deleteByIds(List<Integer> ids);
 }
