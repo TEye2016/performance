@@ -4,4 +4,7 @@
 	<select id="findAll" resultType="Role">
 		select id,name from role order by id desc
 	</select>
+	<select id="findAllByPage" resultType="Role">
+		select id,name,description,roleKey from role by id desc
+	</select>
 </mapper>
