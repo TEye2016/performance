@@ -38,14 +38,13 @@
 			</button>
 		</div>
 		<div class="cl pd-5 bg-1 bk-gray mt-20">
-			<span class="l"><a href="javascript:;" onclick="resourcesDelete()"
-				class="btn btn-danger radius"><i class="icon-trash"></i> 批量删除</a> <a
-				class="btn btn-primary radius"
+			<span class="l"><a href="javascript:;"
+				onclick="resourcesDelete()" class="btn btn-danger radius"><i
+					class="icon-trash"></i> 批量删除</a> <a class="btn btn-primary radius"
 				onclick="article_add('','','添加资源','${pageContext.request.contextPath}/resources/add.action')"
-				href="javascript:;"><i class="icon-plus"></i> 添加资资源</a>
-			</span>
+				href="javascript:;"><i class="icon-plus"></i> 添加资资源</a> </span>
 		</div>
-		<table 
+		<table
 			class="table table-border table-bordered table-bg table-hover table-sort">
 			<thead>
 				<tr class="text-c">
@@ -53,6 +52,7 @@
 					<th width="80">角色编号</th>
 					<th width="100">角色名称</th>
 					<th width="80">角色Key</th>
+					<th width="110">角色描述</th>
 					<th width="70">操作</th>
 				</tr>
 			</thead>
@@ -89,16 +89,53 @@
 	<script src="http://res.layui.com/lay/lib/laypage/laypage.js"></script>
 	<script type="text/javascript">
 		$(function() {
-			$.post("findAll.action",function(data){
-				showPage(data["role"],data["page"]);
-			}, "json"); 
+			$
+			.getJSON(
+					'findAll.action',
+					{
+						//这里面写请求参数
+						pageIndex : 1,
+						pageSize : 10,
+					},
+					function(res) { //从第1页开始请求。返回的json格式可以任意定义  
+						laypage({
+							cont : 'container', //容器。值支持id名、原生dom对象，jquery对象。【如该容器为】：<div id="page1"></div>  
+							totalPages : res["page"].totalPages, //通过后台拿到的总页数  
+							curr : 1, //初始化当前页  
+							skin : '#429842',//皮肤颜色  
+							groups : 3, //连续显示分页数  
+							skip : true, //是否开启跳页  
+							first : '首页', //若不显示，设置false即可  
+							last : '尾页', //若不显示，设置false即可  
+							//prev: '<', //若不显示，设置false即可  
+	            //next: '>', //若不显示，设置false即可  
+							jump : function(e) { //触发分页后的回调  
+								$.getJSON('findAll.action',
+												{
+													page : res["page"].currentPage,//当前页  
+													pageSize : 10,
+													totalPages:res["page"].totalPages,
+													totalRows:res["page"].totalRows
+												// saveKey: saveKey  
+												},
+												function(res) {
+													//渲染  
+													var resultHtml = showData(res["role"]);
+													$("tbody").html("");
+													$("tbody").append (resultHtml);
+												});
+							}
+						});
+					});
 			function article_del(obj, id) {
-				layer.confirm('确认要删除吗？',
-								function(index) {
-									$.post("delete.action",{"ids" : id},function(data) {
-									layer.msg('删除成功!', 1);
-										showPage(data)}, "json");
-								});
+				layer.confirm('确认要删除吗？', function(index) {
+					$.post("delete.action", {
+						"ids" : id
+					}, function(data) {
+						layer.msg('删除成功!', 1);
+						showPage(data)
+					}, "json");
+				});
 			}
 		});
 		function resourcesDelete() {
@@ -114,59 +151,47 @@
 			if (a > 0) {
 				layer.confirm('确认要删除吗？', function(index) {
 					ids = ids.substring(0, ids.lastIndexOf(","));
-					$.post("delete.action",{"ids":ids},function(data){
+					$.post("delete.action", {
+						"ids" : ids
+					}, function(data) {
 						layer.msg('删除成功!', 1);
 						showPage(data);
-					},"json");
+					}, "json");
 				})
 			} else {
 				layer.msg('至少选择一项!', 1);
 			}
 		}
-		function showPage(data,page){
-			    var ccId = parseInt($("#hid_ccid").val(), 10);  
-			    var saveKey = $("#targetKey").val();  
-			    var pageSize = 10;  
-			  //http://blog.csdn.net/qin_zhangyongheng/article/details/47381583
-			    //以下将以jquery.ajax为例，演示一个异步分页  
-			    $.getJSON('/Mobile/AjaxHandler/QuestionAjax.aspx?action=GetRedisJoinMemberInformationById', {  
-			        type: 2,  
-			        ccId: ccId,  
-			        pageIndex: 1,  
-			        pageSize: pageSize,  
-			        saveKey: saveKey  
-			    },  
-			    function (res) { //从第1页开始请求。返回的json格式可以任意定义  
-			        laypage({  
-			            cont: 'page1', //容器。值支持id名、原生dom对象，jquery对象。【如该容器为】：<div id="page1"></div>  
-			            pages: res.pageCount, //通过后台拿到的总页数  
-			            curr: 1, //初始化当前页  
-			            skin: '#429842',//皮肤颜色  
-			            groups: 3, //连续显示分页数  
-			            skip: true, //是否开启跳页  
-			            first: '首页', //若不显示，设置false即可  
-			            last: '尾页', //若不显示，设置false即可  
-			            //prev: '<', //若不显示，设置false即可  
-			            //next: '>', //若不显示，设置false即可  
-			            jump: function (e) { //触发分页后的回调  
-			                $.getJSON('/Mobile/AjaxHandler/QuestionAjax.aspx?action=GetRedisJoinMemberInformationById', {  
-			                    type: 2,  
-			                    ccId: ccId,  
-			                    pageIndex: e.curr,//当前页  
-			                    pageSize: pageSize,  
-			                    saveKey: saveKey  
-			                }, function (res) {  
-			                    e.pages = e.last = res.pageCount; //重新获取总页数，一般不用写  
-			                    //渲染  
-			                    var view = document.getElementById('userTable'); //你也可以直接使用jquery  
-			                    //解析数据  
-			                    var resultHtml = PackagData(res);  
-			                    view.innerHTML = resultHtml;  
-			                });  
-			            }  
-			        });  
-			    });  
+		
+	function showData(data){
+		alert(data)
+		var str = '';
+		for (var i = 0; i < data.length; i++) {
+		str += "<tr class='text-c'>"
+			+ "<td><input type='checkbox' value="+r[i].id+" name='ids' class='ids'></td>"
+			+ "<td>"
+			+ r[i].id
+			+ "</td>"
+			+ "<td class='text-l'><u style='cursor: pointer' class='text-primary' onClick='article_edit('10001','650','','查看','article-zhang.html')"
+			+ "title='查看'>"
+			+ r[i].name
+			+ "</u></td>"
+			+ "<td>"
+			+ r[i].rolekey
+			+ "</td>"
+			+ "<td>"
+			+ r[i].description
+			+ "</td><td class='f-14 article-manage'><a"
+			+ "style='text-decoration: none' onClick='article_xiajia(this,'10001')' href='javascript:;'"
+			+ "title='删除'><i class='icon-hand-down'></i></a> <a style='text-decoration: none' class='ml-5'"
+			+ "onClick='article_edit('10001','','','资源编辑','article-edit.html')' href='javascript:;' title='修改'><i class='icon-edit'></i></a>"
+			+ "<a style='text-decoration: none' class='ml-5' onClick='article_del(this,"
+			+ r[i].id
+			+ ")' href='javascript:;'title='删除'><i class='icon-trash'></i></a></td>"
+			+ "</tr>";	
 		}
+    return str;
+    }
 	</script>
 </body>
 </html>

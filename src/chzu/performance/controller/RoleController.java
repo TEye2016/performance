@@ -31,7 +31,7 @@ public class RoleController {
 		m.addObject("resources",resources);
 		return m;
 	}
-	@RequestMapping("/tofindAll")
+	@RequestMapping("/toFindAll")
 	public String toFindAll(){
 		return "role/list";
 	}

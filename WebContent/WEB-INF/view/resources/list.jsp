@@ -87,7 +87,7 @@
 						+ _bdhmProtocol
 						+ "hm.baidu.com/h.js%3F080836300300be57b7f34f4b3e97d911' type='text/javascript'%3E%3C/script%3E"));
 	</script>
-	<script src="http://res.layui.com/lay/lib/laypage/laypage.js"></script>
+	<script src="${pageContext.request.contextPath }/lib/laypage/laypage.js"></script>
 	<script type="text/javascript">
 		$(function() {
 			$.post("findAll.action",function(data){
