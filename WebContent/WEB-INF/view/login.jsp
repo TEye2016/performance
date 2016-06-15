@@ -38,7 +38,7 @@
 <div class="header"><font style="font-size: 25px;font-style: inherit;color: white;">信息学院教师绩效管理系统</font></div>
 <div class="loginWraper">
   <div id="loginform" class="loginBox">
-    <form class="form form-horizontal" action="login.action" method="post">
+    <form class="form form-horizontal" action="${pageContext.request.contextPath }login.action" method="post">
       <div class="row cl">
         <label class="form-label col-3"><i class="iconfont">&#xf00ec;</i></label>
         <div class="formControls col-8">

@@ -32,10 +32,10 @@ function datadel(){
 /*弹出层*/
 function layer_show(w,h,title,url){
 	if (w == null || w == '') {
-		w=800;
+		w=700;
 	};
 	if (h == null || h == '') {
-		h=($(window).height() - 50);
+		h=($(window).height() - 300);
 	};
 	if (title == null || title == '') {
 		title=false;
@@ -49,12 +49,15 @@ function layer_show(w,h,title,url){
     	title: title,
 		maxmin:false,
 		shadeClose: true,
-    	closeBtn: [0, true],
+    	closeBtn: [1, true],
     	shade: [0.8, '#000'],
     	border: [0],
     	offset: ['20px',''],
     	area: [w+'px', h +'px'],
-    	iframe: {src: url}
+    	iframe: {src: url},
+    	close : function(index){
+    		 location.reload();
+    	}
 	});
 }
 /*左侧菜单响应式*/

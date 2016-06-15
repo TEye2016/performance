@@ -9,6 +9,7 @@
 		= resources.parentId ) parentName,
 		resKey,
 		type,
+		typeName,
 		resUrl,
 		level,
 		description
@@ -48,9 +49,9 @@
 	</select>
 	<insert id="saveResources" parameterType="Resources">
 		insert into resources
-		(name,parentId,resKey,type,resUrl,level,description)
+		(name,parentId,resKey,type,resUrl,level,description,typeName)
 		values
-		(#{name},#{parentid},#{reskey},#{type},#{resurl},#{level},#{description})
+		(#{name},#{parentId},#{reskey},#{type},#{resurl},#{level},#{description},#{typeName})
 	</insert>
 	<select id="findAllByPage" resultType="Resources">
 		select

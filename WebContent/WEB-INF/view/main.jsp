@@ -45,7 +45,7 @@
       <dd>
         <ul>
         <c:forEach items="${resources}" var="k">
-			<c:if test="${k.parentid eq key.id}">
+			<c:if test="${k.parentId eq key.id}">
 			<c:if test="${k.type eq 1}">
           <li><a _href="${pageContext.request.contextPath }/${k.resurl }" href="javascript:void(0)">${k.name}</a></li>
         	</c:if>

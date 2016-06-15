@@ -1,6 +1,5 @@
 package chzu.performance.controller;
 
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,16 +9,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import chzu.performance.entity.Resources;
 import chzu.performance.service.ResourcesService;
-import chzu.performance.util.HandlerResult;
-import chzu.performance.util.PageContext;
-import chzu.performance.util.PageHelper;
 
 /**
  * 资源管理相关的控制器
@@ -43,53 +38,33 @@ public class ResourcesController {
 	}
 
 	@RequestMapping("/save")
-	public String save(Resources r,HttpServletRequest request) {
+	public String save(Resources r, HttpServletRequest request) {
 		this.resourcesService.saveResources(r);
 		request.setAttribute("message", "添加成功！");
 		return "resources/addresc";
 	}
 
 	@RequestMapping("/findAll")
-	public ModelAndView findAll(HttpServletRequest request,
-			HttpServletResponse response) {
-
-		// 可以将分页参数获取封装，已达到更好的复用效果。
-		// page=2&pageSize=10&totalPages=19&totalRows=188
-		String pagec = request.getParameter("page");
-		String pageSize = request.getParameter("pageSize");
-		String totalPages = request.getParameter("totalPages");
-		String totalRows = request.getParameter("totalRows");
-		// 方法2：不用进行map传参，用ThreadLocal进行传参,方便没有侵入性
-//		PageContext page = PageContext.getContext();
-//
-//		// 请自行验证
-//		if (null == pagec) {
-//			page.setCurrentPage(1);
-//			page.setPageSize(10);
-//		} else {
-//			page.setCurrentPage(Integer.parseInt(pagec));
-//			page.setPageSize(Integer.parseInt(pageSize));
-//			page.setTotalPages(Integer.parseInt(totalPages));
-//			page.setTotalRows(Integer.parseInt(totalRows));
-//		}
-//		page.setPagination(true);
-		PageContext page = new PageHelper(pagec, pageSize, totalPages, totalRows).getPage();
-		HandlerResult rs = resourcesService.findAllByPage();
-		ModelAndView mv = new ModelAndView("resources/list");
-		mv.addObject("resources", rs.getResultObj());
-		mv.addObject("page", page);
-		return mv;
+	public @ResponseBody List<Resources> findAll() {
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		String pagec = request.getParameter("page");
+//		String pageSize = request.getParameter("pageSize");
+//		String totalPages = request.getParameter("totalPages");
+//		String totalRows = request.getParameter("totalRows");
+//		PageContext page = new PageHelper(pagec, pageSize, totalPages,
+//				totalRows).getPage();
+//		HandlerResult rs = resourcesService.findAllByPage();
+		List<Resources> data = this.resourcesService.findAll();
+		return data;
 	}
+
 	@RequestMapping("/delete")
-	public String delete(String ids) throws Exception{
+	public String delete(String ids) throws Exception {
 		this.resourcesService.deleteByIds(ids);
 		return "redirect:findAll.action";
 	}
-	@RequestMapping("/deleteByid")
-	public @ResponseBody Map<String, Object> deleteByid(String id) throws Exception{
-		Map<String, Object> map = new HashMap<String, Object>();
-		this.resourcesService.deleteByIds(id);
-		
-		return map;
+	@RequestMapping("/toFindAll")
+	public String toFindAll(){
+		return "resources/list";
 	}
 }

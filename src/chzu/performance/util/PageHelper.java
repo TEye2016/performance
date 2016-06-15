@@ -15,7 +15,7 @@ public class PageHelper implements Serializable{
 		 page = PageContext.getContext();
 		if (null == pagec) {
 			page.setCurrentPage(1);
-			page.setPageSize(10);
+			page.setPageSize(2);
 		} else {
 			page.setCurrentPage(Integer.parseInt(pagec));
 			page.setPageSize(Integer.parseInt(pageSize));

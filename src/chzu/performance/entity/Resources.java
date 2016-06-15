@@ -4,13 +4,9 @@ import java.util.HashSet;
 import java.util.Set;
 public class Resources {
     private Integer id;
-
     private String name;
-
-    private Integer parentid;
-
     private String reskey;
-
+    private String typeName;
     private String type;
     private String resurl;
     private Integer level;
@@ -42,6 +38,13 @@ public class Resources {
 	public void setParentId(Integer parentId) {
 		this.parentId = parentId;
 	}
+	public String getTypeName() {
+		return typeName;
+	}
+
+	public void setTypeName(String typeName) {
+		this.typeName = typeName;
+	}
 
 	public String getParentName() {
 		return parentName;
@@ -65,14 +68,6 @@ public class Resources {
 
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
-    }
-
-    public Integer getParentid() {
-        return parentid;
-    }
-
-    public void setParentid(Integer parentid) {
-        this.parentid = parentid;
     }
 
     public String getReskey() {
