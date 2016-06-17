@@ -38,7 +38,7 @@
 			<div class="row cl">
 				<label class="form-label col-3"><span class="c-red">*</span>用户地址：</label>
 				<div class="formControls col-5">
-					<input type="text" class="input-text" placeholder="地址" id="roleKey"
+					<input type="text" class="input-text" placeholder="地址" id="useraddress"
 						name="useraddress" datatype="m" nullmsg="用户地址不能为空">
 				</div>
 				<div class="col-4"></div>
@@ -47,7 +47,7 @@
 				<label class="form-label col-3"><span class="c-red">*</span>用户联系方式：</label>
 				<div class="formControls col-5">
 					<input type="text" class="input-text" placeholder="联系方式"
-						id="roleKey" name="userphone" datatype="m" nullmsg="联系方式不能为空">
+						id="userphone" name="userphone" datatype="m" nullmsg="联系方式不能为空">
 				</div>
 				<div class="col-4"></div>
 			</div>
@@ -191,14 +191,19 @@
 				}
 				var name = document.getElementById("name").value;
 				var roleKey = document.getElementById("roleKey").value;
-				var description = document.getElementById("description").value;
+				var useraddress = document.getElementById("useraddress").value;
+				var userSex = $("input[type='radio']:checked").val();
+				var description = document.getElementById("userphone").value;
 				$.post("role/save.action", {
-					"name" : name,
-					"roleKey" : roleKey,
-					"description" : description
+					"userrealname":name,
+					"userpassword" : roleKey,
+					"userphone" : description,
+					"useraddress":useraddress,
+					"userSex":userSex,
+					"roleids":optionValue
 				}, function(data) {
-
-				}, "text/json");
+					alert("添加成功！")
+				}, "json");
 			}
 		}
 	</script>

@@ -86,4 +86,9 @@ public class UserController {
 		modelAndView.addObject("roles", roles);
 		return modelAndView;
 	}
+	@RequestMapping("/save")
+	@ResponseBody
+	public String save(User user,String roleids){
+		return "sucess";
+	}
 }

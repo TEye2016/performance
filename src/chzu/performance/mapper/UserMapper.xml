@@ -51,7 +51,7 @@
 		</where>
 	</select>
 	<!-- 增加用户 -->
-	<insert id="save" parameterType="User">
+	<insert id="save" parameterType="User" keyProperty="userid" useGeneratedKeys="true">
 		insert into user( userName,
 		userPassword,
 		userNickname, userRealname,
@@ -101,4 +101,7 @@
 	<select id="findAllByPage" parameterType="User">
 		select userId,userName,userNickname,userRealname from user order by userId asc
 	</select>
+	<insert id="saveUserRole" parameterType="chzu.performance.entity.exp.RoleUser">
+		insert into user_role (user_id,role_id) values (#{userid},#{roleid})
+	</insert>
 </mapper>
