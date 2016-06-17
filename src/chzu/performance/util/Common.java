@@ -21,7 +21,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 public class Common {
 	/**
-	 * 判断变量是否为空
+	 * 判断字符串是否为空
 	 * 
 	 * @param s
 	 * @return
@@ -74,25 +74,6 @@ public class Common {
 		return difList;
 	}
 
-	/**
-	 * 返回用户的IP地址
-	 * 
-	 * @param request
-	 * @return
-	 */
-	public static String toIpAddr(HttpServletRequest request) {
-		String ip = request.getHeader("x-forwarded-for");
-		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-			ip = request.getHeader("Proxy-Client-IP");
-		}
-		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-			ip = request.getHeader("WL-Proxy-Client-IP");
-		}
-		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-			ip = request.getRemoteAddr();
-		}
-		return ip;
-	}
 
 	/**
 	 * 传入原图名称，，获得一个以时间格式的新名称

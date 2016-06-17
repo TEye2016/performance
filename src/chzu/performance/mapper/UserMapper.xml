@@ -95,4 +95,10 @@
 	  <include refid="selectuser"/>
 	  from user where userName=#{userName}
 	</select>
+	<select id="findAll" resultType="User">
+		select userId,userName,userNickname,userRealname,userAddress,userPhone,userSex from user order by userId asc
+	</select>
+	<select id="findAllByPage" parameterType="User">
+		select userId,userName,userNickname,userRealname from user order by userId asc
+	</select>
 </mapper>

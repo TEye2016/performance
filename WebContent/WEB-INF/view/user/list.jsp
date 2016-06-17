@@ -18,7 +18,7 @@
 <link href="${pageContext.request.contextPath }/lib/font-awesome/font-awesome.min.css" rel="stylesheet"
 	type="text/css" />
 <!--[if IE 7]>
-<link href="../lib/font-awesome/font-awesome-ie7.min.css" rel="stylesheet" type="text/css" />
+<link href="${pageContext.request.contextPath }/lib/font-awesome/font-awesome-ie7.min.css" rel="stylesheet" type="text/css" />
 <![endif]-->
 <link href="${pageContext.request.contextPath }/lib/iconfont/iconfont.css" rel="stylesheet"
 	type="text/css" />
@@ -31,28 +31,29 @@
 <body>
 	<div class="pd-20">
 		<div class="text-c">
-			<input type="text" name="name" id="" placeholder=" 资源名称"
+			<input type="text" name="name" id="" placeholder="用户名称"
 				style="width: 250px" class="input-text" />
 			<button name="" id="" class="btn btn-success" type="submit">
-				<i class="icon-search"></i> 搜资源
+				<i class="icon-search"></i> 搜用户
 			</button>
 		</div>
 		<div class="cl pd-5 bg-1 bk-gray mt-20">
 			<span class="l"><a href="javascript:;"
 				onclick="resourcesDelete()" class="btn btn-danger radius"><i
 					class="icon-trash"></i> 批量删除</a> <a class="btn btn-primary radius"
-				onclick="article_add('','','添加角色','${pageContext.request.contextPath}/role/add.action')"
-				href="javascript:;"><i class="icon-plus"></i> 添加角色</a> </span>
+				onclick="article_add('','','添加用户','${pageContext.request.contextPath}/user/add.action')"
+				href="javascript:;"><i class="icon-plus"></i> 添加用户</a> </span>
 		</div>
 		<table
 			class="table table-border table-bordered table-bg table-hover table-sort">
 			<thead>
 				<tr class="text-c">
 					<th width="25"><input type="checkbox" name="" value=""></th>
-					<th width="80">角色编号</th>
-					<th width="100">角色名称</th>
-					<th width="80">角色Key</th>
-					<th width="110">角色描述</th>
+					<th width="80">用户工号</th>
+					<th width="60">用户名称</th>
+					<th width="80">用户电话</th>
+					<th width="50">用户性别</th>
+					<th width="50">用户住址</th>
 					<th width="70">操作</th>
 				</tr>
 			</thead>
@@ -138,17 +139,20 @@
 		        str += "<tr class='text-c'>"
 					+ "<td><input type='checkbox' value="+r[i].id+" name='ids' class='ids'></td>"
 					+ "<td>"
-					+ r[i].id
+					+ r[i].username
 					+ "</td>"
 					+ "<td class='text-l'><u style='cursor: pointer' class='text-primary' onClick='article_edit('10001','650','','查看','article-zhang.html')"
 					+ "title='查看'>"
-					+ r[i].name
+					+ r[i].userrealname
 					+ "</u></td>"
 					+ "<td>"
-					+ r[i].rolekey
+					+ r[i].userphone
 					+ "</td>"
 					+ "<td>"
-					+ r[i].description
+					+ r[i].usersex
+					+ "</td>"
+					+ "<td>"
+					+ r[i].useraddress
 					+ "</td><td class='f-14 article-manage'><a"
 					+ "style='text-decoration: none' onClick='article_xiajia(this,'10001')' href='javascript:;'"
 					+ "title='删除'><i class='icon-hand-down'></i></a> <a style='text-decoration: none' class='ml-5'"

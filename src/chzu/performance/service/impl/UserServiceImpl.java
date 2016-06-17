@@ -1,5 +1,7 @@
 package chzu.performance.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,10 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public User querySingleUserByName(String username) throws Exception {
 		return this.querySingleUserByName(username);
+	}
+	@Override
+	public List<User> findAll() {
+		return this.userMapper.findAll();
 	}
 
 

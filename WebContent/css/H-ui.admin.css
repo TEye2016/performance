@@ -10,8 +10,8 @@ Created & Modified by guojunhui.
 body{font-size:14px;color:#333}/*全站默认字体颜色*/
 a{color:#333}a:hover,a:focus,.maincolor,.maincolor a{color:#06c}
 .bg-1{ background-color:#f5fafe}
-.Hui-header{background-color:#008792;border-bottom:#CCCCFF 1px solid;-moz-box-shadow: 0 0 4px #333333;-webkit-box-shadow: 0 0 4px #333333;box-shadow: 0 0 4px #333333}/*头部颜色*/
-.Hui-aside{background-color:#008792;border-right: 1px solid #fff}/*侧边栏*/
+.Hui-header{background-color:#202020;border-bottom:#CCCCFF 1px solid;-moz-box-shadow: 0 0 4px #333333;-webkit-box-shadow: 0 0 4px #333333;box-shadow: 0 0 4px #333333}/*头部颜色*/
+.Hui-aside{background-color:#B6B6B6;border-right: 1px solid #fff}/*侧边栏*/
 	.Hui-logo,.Hui-logo-m{color:#fff}/*logo文字颜色*/
 	.Hui-logo:hover,.Hui-logo-m:hover{color:#fff;text-decoration: none}
 	#Hui-nav li a{ color:#999}/*头部导航文字颜色*/
@@ -19,7 +19,7 @@ a{color:#333}a:hover,a:focus,.maincolor,.maincolor a{color:#06c}
 	#Hui-nav li.current a,#Hui-nav li.current a:hover{ color:#fff; background-color:#fff}/*导航高亮状态*/
 	.menu_dropdown dt{color:#fff;border-bottom: 1px solid #222}/*左侧二级导航菜单*/
 	.menu_dropdown li a{color:#fff;border-bottom: 1px solid #222}
-	.menu_dropdown li a:hover{color:#fff;background-color:#00a6ac;font-size: 17px}
+	.menu_dropdown li a:hover{color:#fff;background-color:#202020;font-size: 17px}
 	.menu_dropdown li.current a,.menu_dropdown li.current a:hover{ background:#777}
 /*--------------------H-uiAdmin-------------------------*/
 html{height:100%}

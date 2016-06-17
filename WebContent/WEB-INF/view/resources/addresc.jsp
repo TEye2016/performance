@@ -3,26 +3,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-<!--[if lt IE 9]>
-<script type="text/javascript" src="../lib/html5.js"></script>
-<script type="text/javascript" src="../lib/respond.min.js"></script>
-<script type="text/javascript" src="../lib/PIE_IE678.js"></script>
-<![endif]-->
-<link href="../css/H-ui.min.css" rel="stylesheet" type="text/css" />
-<link href="../css/H-ui.admin.css" rel="stylesheet" type="text/css" />
-<link href="../lib/icheck/icheck.css" rel="stylesheet" type="text/css" />
-<link href="../lib/font-awesome/font-awesome.min.css" rel="stylesheet"
-	type="text/css" />
-<!--[if IE 7]>
-<link href="../lib/font-awesome/font-awesome-ie7.min.css" rel="stylesheet" type="text/css" />
-<![endif]-->
-<link href="../lib/iconfont/iconfont.css" rel="stylesheet"
-	type="text/css" />
-<!--[if IE 6]>
-<script type="text/javascript" src="../lib/DD_belatedPNG_0.0.8a-min.js" ></script>
-<script>DD_belatedPNG.fix('*');</script>
-<![endif]-->
+<head>
+<%@include file="../title.jspf"%>
 <title>添加资源</title>
 </head>
 <body>
@@ -36,7 +18,7 @@
 					<span class="select-box"> <select class="select" size="1"
 						name="parentid" datatype="*" nullmsg="不能为空！">
 							<c:forEach items="${parent }" var="p">
-								<option value="${p.id }" selected>${p.name }</option>
+								<option value="${p.id }">${p.name }</option>
 							</c:forEach>
 							<option value="1010" selected="selected">顶级菜单</option>
 					</select>
@@ -115,10 +97,17 @@
 			</div>
 		</form>
 	</div>
-	<script type="text/javascript" src="../lib/jquery.min.js"></script>
-	<script type="text/javascript" src="../lib/icheck/jquery.icheck.min.js"></script>
-	<script type="text/javascript" src="../lib/Validform_v5.3.2.js"></script>
-	<script type="text/javascript" src="../js/H-ui.js"></script>
-	<script type="text/javascript" src="../js/H-ui.admin.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			$("#form-user-add").Validform({
+				tiptype : 2,
+			});
+			$('.skin-minimal input').iCheck({
+				checkboxClass : 'icheckbox-blue',
+				radioClass : 'iradio-blue',
+				increaseArea : '20%'
+			});
+		});
+	</script>
 </body>
 </html>

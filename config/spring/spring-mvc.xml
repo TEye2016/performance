@@ -15,4 +15,10 @@
 		<property name="prefix" value="/WEB-INF/view/"/>
 		<property name="suffix" value=".jsp"/>
 	</bean>
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<bean class="chzu.performance.interceptor.LoginInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
 </beans>

@@ -2,9 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="chzu.performance.mapper.RoleMapper">
 	<select id="findAll" resultType="Role">
-		select id,name from role order by id desc
+		select id,name,description,roleKey from role order by id asc
 	</select>
 	<select id="findAllByPage" resultType="Role">
 		select id,name,description,roleKey from role order by id desc
 	</select>
+	<insert id="saveRole" useGeneratedKeys="true" keyProperty="id"  parameterType="Role">
+		insert into role(name,roleKey,description,enable) values (#{name},#{rolekey},#{description},#{enable});
+	</insert>
+	<insert id="saveRoleResources" parameterType="chzu.performance.entity.exp.ResourcesRole">
+		insert into resources_role (resc_id,role_id) values (#{rescid},#{roleid})
+	</insert>
 </mapper>

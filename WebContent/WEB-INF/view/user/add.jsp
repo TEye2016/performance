@@ -3,33 +3,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-<!--[if lt IE 9]>
-<script type="text/javascript" src="${pageContext.request.contextPath }/lib/html5.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath }/lib/respond.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath }/lib/PIE_IE678.js"></script>
-<![endif]-->
-<link href="${pageContext.request.contextPath }/css/H-ui.min.css"
-	rel="stylesheet" type="text/css" />
-<link href="${pageContext.request.contextPath }/css/H-ui.admin.css"
-	rel="stylesheet" type="text/css" />
-<link href="${pageContext.request.contextPath }/lib/icheck/icheck.css"
-	rel="stylesheet" type="text/css" />
-<link
-	href="${pageContext.request.contextPath }/lib/font-awesome/font-awesome.min.css"
-	rel="stylesheet" type="text/css" />
-<!--[if IE 7]>
-<link href="${pageContext.request.contextPath }/lib/font-awesome/font-awesome-ie7.min.css" rel="stylesheet" type="text/css" />
-<![endif]-->
-<link
-	href="${pageContext.request.contextPath }/lib/iconfont/iconfont.css"
-	rel="stylesheet" type="text/css" />
-<!--[if IE 6]>
-<script type="text/javascript" src="${pageContext.request.contextPath }/lib/DD_belatedPNG_0.0.8a-min.js" ></script>
-<script>DD_belatedPNG.fix('*');</script>
-<![endif]-->
 <head>
-<title>添加角色</title>
+<title>添加用户</title>
 <%@include file="../title.jspf"%>
 </head>
 <body>
@@ -37,48 +12,77 @@
 		<form action="" method="post" class="form form-horizontal"
 			id="form-user-add">
 			<div class="row cl">
-				<label class="form-label col-3"><span class="c-red">*</span>角色名称：</label>
+				<label class="form-label col-3"><span class="c-red">*</span>用户姓名：</label>
 				<div class="formControls col-4">
-					<input type="text" class="input-text" placeholder="" name="name"
-						id="user-name" datatype="*2-16" nullmsg="角色名称不能为空">
+					<input type="text" class="input-text" placeholder=""
+						name="userrealname" id="name" datatype="*2-16" nullmsg="用户姓名不能为空">
 				</div>
 				<div class="col-4"></div>
 			</div>
 			<div class="row cl">
-				<label class="form-label col-3"><span class="c-red">*</span>角色Key：</label>
+				<label class="form-label col-3"><span class="c-red">*</span>用户工号：</label>
 				<div class="formControls col-5">
-					<input type="text" class="input-text" placeholder="格式如Admin、User"
-						id="roleKey" name="roleKey" datatype="m" nullmsg="角色key不能为空">
+					<input type="text" class="input-text" placeholder="用户工号"
+						id="username" name="username" datatype="m" nullmsg="用户工号不能为空">
 				</div>
 				<div class="col-4"></div>
 			</div>
 			<div class="row cl">
-				<label class="form-label col-3">角色描述：</label>
+				<label class="form-label col-3"><span class="c-red">*</span>用户密码：</label>
 				<div class="formControls col-5">
-					<textarea name="description" cols="" rows="" class="textarea"
-						id="description" placeholder="描述一下所添加的角色...最少输入10个字符"
-						datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！"
-						onKeyUp="textarealength(this,100)"></textarea>
-					<p class="textarea-numberbar">
-						<em class="textarea-length">0</em>/100
-					</p>
+					<input type="text" class="input-text" placeholder="密码" id="roleKey"
+						name="userpassword" datatype="m" nullmsg="用户密码不能为空">
 				</div>
 				<div class="col-4"></div>
 			</div>
 			<div class="row cl">
-				<label class="form-label col-3">角色赋权：</label>
+				<label class="form-label col-3"><span class="c-red">*</span>用户地址：</label>
+				<div class="formControls col-5">
+					<input type="text" class="input-text" placeholder="地址" id="roleKey"
+						name="useraddress" datatype="m" nullmsg="用户地址不能为空">
+				</div>
+				<div class="col-4"></div>
+			</div>
+			<div class="row cl">
+				<label class="form-label col-3"><span class="c-red">*</span>用户联系方式：</label>
+				<div class="formControls col-5">
+					<input type="text" class="input-text" placeholder="联系方式"
+						id="roleKey" name="userphone" datatype="m" nullmsg="联系方式不能为空">
+				</div>
+				<div class="col-4"></div>
+			</div>
+			<div class="row cl">
+				<label class="form-label col-3"><span class="c-red">*</span>性别：</label>
+				<div class="formControls col-5 skin-minimal">
+					<div class="radio-box">
+						<input type="radio" id="sex-1" name="usersex" datatype="*"
+							value="男" nullmsg="请选择性别！"> <label for="sex-1">男</label>
+					</div>
+					<div class="radio-box">
+						<input type="radio" id="sex-2" name="usersex" value="女"> <label
+							for="sex-2">女</label>
+					</div>
+					<div class="radio-box">
+						<input type="radio" id="sex-3" name="usersex" value="保密">
+						<label for="sex-3">保密</label>
+					</div>
+				</div>
+				<div class="col-4"></div>
+			</div>
+			<div class="row cl">
+				<label class="form-label col-3">添加角色：</label>
 				<div class="formControls col-5">
 					<table class="table table-border table-bordered">
 						<tr>
-							<td>系统权限</td>
+							<td>系统角色</td>
 							<td></td>
-							<td>角色拥有权限</td>
+							<td>用户拥有角色</td>
 						</tr>
 						<tr>
 							<td width="100px">
 								<!--multiple="multiple" 能同时选择多个   size="10"  确定下拉选的长度--> <select
 								multiple="multiple" size="10" id="left" style="width: 100%">
-									<c:forEach items="${resources }" var="r">
+									<c:forEach items="${roles }" var="r">
 										<option value="${r.id }">${r.name }</option>
 									</c:forEach>
 							</select>
@@ -105,7 +109,6 @@
 				<div class="col-4"></div>
 			</div>
 			<div class="row cl">
-				<b id="message"></b>
 				<div class="col-9 col-offset-3">
 					<input class="btn btn-primary radius" type="submit" id="submit"
 						value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
@@ -189,14 +192,13 @@
 				var name = document.getElementById("name").value;
 				var roleKey = document.getElementById("roleKey").value;
 				var description = document.getElementById("description").value;
-				$.post("save.action", {
+				$.post("role/save.action", {
 					"name" : name,
-					"rolekey" : roleKey,
-					"description" : description,
-					"rescid" : optionValue
+					"roleKey" : roleKey,
+					"description" : description
 				}, function(data) {
-					alert("添加成功！");
-				}, "text");
+
+				}, "text/json");
 			}
 		}
 	</script>

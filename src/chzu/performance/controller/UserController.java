@@ -14,11 +14,14 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import chzu.performance.entity.Resources;
-
+import chzu.performance.entity.Role;
 import chzu.performance.entity.User;
 import chzu.performance.service.ResourcesService;
+import chzu.performance.service.RoleService;
 import chzu.performance.service.UserService;
 
 /**
@@ -35,6 +38,8 @@ public class UserController {
 	private ResourcesService resourcesService;
 	@Autowired
 	private AuthenticationManager myAuthenticationManager;
+	@Autowired
+	private RoleService roleService;
 	@RequestMapping(value = "/login", method = { RequestMethod.GET,
 			RequestMethod.POST })
 	public String login(User u,HttpServletRequest request) throws Exception {
@@ -63,5 +68,22 @@ public class UserController {
 	public String loginOut(HttpServletRequest request){
 		request.getSession().invalidate();
 		return "login";
+	}
+	@RequestMapping("/tofindAll")
+	public String tofindAll(){
+		return "user/list";
+	}
+	@RequestMapping("/findAll")
+	@ResponseBody
+	public List<User> findAll(){
+		List<User> users = this.userService.findAll();
+		return users;
+	}
+	@RequestMapping("/add")
+	public ModelAndView add(){
+		ModelAndView modelAndView = new ModelAndView("user/add");
+		List<Role> roles = this.roleService.findAll();
+		modelAndView.addObject("roles", roles);
+		return modelAndView;
 	}
 }

@@ -1,5 +1,6 @@
 package chzu.performance.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import chzu.performance.entity.Resources;
 import chzu.performance.entity.Role;
+import chzu.performance.entity.exp.ResourcesRole;
 import chzu.performance.service.ResourcesService;
 import chzu.performance.service.RoleService;
 import chzu.performance.util.HandlerResult;
@@ -45,13 +47,14 @@ public class RoleController {
 	 */
 	@RequestMapping("/findAll")
 	@ResponseBody
-	public Map<String, Object> findAll(String page,String pageSize,String totalPages,String totalRows ){
-		Map<String, Object> map = new HashMap<String, Object>();
-		PageHelper pageHelper = new PageHelper(page, pageSize, totalPages, totalRows);
-		map.put("page", pageHelper.getPage());
-		HandlerResult handlerResult = this.roleService.findAllByPage();
-		map.put("role", handlerResult.getResultObj());
-		return map;
+	public List<Role> findAll(){
+		List<Role> roles = this.roleService.findAll();
+		return roles;
+	}
+	@RequestMapping("/save")
+	public String save(Role role,String rescid){
+		this.roleService.saveRole(role, rescid);
+		return "sucess";
 	}
 
 }

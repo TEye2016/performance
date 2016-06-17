@@ -32,10 +32,10 @@ function datadel(){
 /*弹出层*/
 function layer_show(w,h,title,url){
 	if (w == null || w == '') {
-		w=700;
+		w=800;
 	};
 	if (h == null || h == '') {
-		h=($(window).height() - 300);
+		h=($(window).height() - 250);
 	};
 	if (title == null || title == '') {
 		title=false;

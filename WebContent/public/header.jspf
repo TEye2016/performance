@@ -1,36 +1,37 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!--[if lt IE 9]>
-<script type="text/javascript" src="lib/html5.js"></script>
-<script type="text/javascript" src="lib/respond.min.js"></script>
-<script type="text/javascript" src="lib/PIE_IE678.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/lib/html5.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/lib/respond.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/lib/PIE_IE678.js"></script>
 <![endif]-->
-<link href="css/H-ui.min.css" rel="stylesheet" type="text/css" />
-<link href="css/H-ui.login.css" rel="stylesheet" type="text/css" />
-<link href="css/style.css" rel="stylesheet" type="text/css" />
-<link href="lib/font-awesome/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="${pageContext.request.contextPath }/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="${pageContext.request.contextPath }/css/H-ui.login.css" rel="stylesheet" type="text/css" />
+<link href="${pageContext.request.contextPath }/css/style.css" rel="stylesheet" type="text/css" />
+<link href="${pageContext.request.contextPath }/lib/font-awesome/font-awesome.min.css" rel="stylesheet" type="text/css" />
 <!--[if IE 7]>
-<link href="lib/font-awesome/font-awesome-ie7.min.css" rel="stylesheet" type="text/css" />
+<link href="${pageContext.request.contextPath }/lib/font-awesome/font-awesome-ie7.min.css" rel="stylesheet" type="text/css" />
 <![endif]-->
-<link href="lib/iconfont/iconfont.css" rel="stylesheet" type="text/css" />
+<link href="${pageContext.request.contextPath }/lib/iconfont/iconfont.css" rel="stylesheet" type="text/css" />
 <!--[if IE 6]>
-<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/lib/DD_belatedPNG_0.0.8a-min.js" ></script>
 <script>DD_belatedPNG.fix('*');</script>
 <![endif]-->
 <title>Insert title here</title>
 <meta http-equiv="Cache-Control" content="no-siteapp" />
 <LINK rel="Bookmark" href="/favicon.ico" >
 <LINK rel="Shortcut Icon" href="/favicon.ico" />
-<link href="lib/iconfont/iconfont.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="lib/jquery.min.js"></script> 
-<script type="text/javascript" src="lib/Validform_v5.3.2.js"></script> 
-<script type="text/javascript" src="lib/layer1.8/layer.min.js"></script> 
-<script type="text/javascript" src="js/H-ui.js"></script> 
-<script type="text/javascript" src="js/H-ui.admin.js"></script> 
-<script type="text/javascript" src="js/H-ui.admin.doc.js"></script> 
+<link href="${pageContext.request.contextPath }/lib/iconfont/iconfont.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="${pageContext.request.contextPath }/lib/jquery.min.js"></script> 
+<script type="text/javascript" src="${pageContext.request.contextPath }/lib/Validform_v5.3.2.js"></script> 
+<script type="text/javascript" src="${pageContext.request.contextPath }/lib/layer1.8/layer.min.js"></script> 
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/H-ui.js"></script> 
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/H-ui.admin.js"></script> 
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/H-ui.admin.doc.js"></script> 
 </head>
 </html>

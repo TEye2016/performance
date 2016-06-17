@@ -45,7 +45,7 @@
 	</select>
 	<select id="getParentRsources" resultType="Resources">
 		select r.name,r.id
-		from resources as r where r.parentid = 1010;
+		from resources as r where r.type = 0;
 	</select>
 	<insert id="saveResources" parameterType="Resources">
 		insert into resources
