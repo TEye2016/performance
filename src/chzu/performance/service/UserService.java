@@ -9,4 +9,5 @@ public interface UserService {
 	public User querySingleUserByName(String username)throws Exception;
 	public List<User> findAll();
 	public void saveUser(User u,String rids);
+	public void deleteUserByIds(String ids);
 }

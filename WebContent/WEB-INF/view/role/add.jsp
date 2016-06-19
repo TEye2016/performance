@@ -40,7 +40,7 @@
 				<label class="form-label col-3"><span class="c-red">*</span>角色名称：</label>
 				<div class="formControls col-4">
 					<input type="text" class="input-text" placeholder="" name="name"
-						id="user-name" datatype="*2-16" nullmsg="角色名称不能为空">
+						id="name" datatype="*2-16" nullmsg="角色名称不能为空">
 				</div>
 				<div class="col-4"></div>
 			</div>
@@ -48,7 +48,7 @@
 				<label class="form-label col-3"><span class="c-red">*</span>角色Key：</label>
 				<div class="formControls col-5">
 					<input type="text" class="input-text" placeholder="格式如Admin、User"
-						id="roleKey" name="roleKey" datatype="m" nullmsg="角色key不能为空">
+						id="roleKey" name="roleKey" datatype="*" nullmsg="角色key不能为空">
 				</div>
 				<div class="col-4"></div>
 			</div>
@@ -57,7 +57,7 @@
 				<div class="formControls col-5">
 					<textarea name="description" cols="" rows="" class="textarea"
 						id="description" placeholder="描述一下所添加的角色...最少输入10个字符"
-						datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！"
+						datatype="*10-100" dragonfly="true" nullmsg="角色描述不能为空！"
 						onKeyUp="textarealength(this,100)"></textarea>
 					<p class="textarea-numberbar">
 						<em class="textarea-length">0</em>/100

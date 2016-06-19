@@ -28,8 +28,7 @@ public class ResourcesController {
 	@RequestMapping("/add")
 	public ModelAndView add() {
 		ModelAndView modelAndView = new ModelAndView();
-		List<Resources> parent = this.resourcesService.getParentRsources();
-		modelAndView.addObject("parent", parent);
+		
 		modelAndView.setViewName("resources/addresc");
 		return modelAndView;
 	}
@@ -70,5 +69,11 @@ public class ResourcesController {
 		Resources resources = this.resourcesService.getResourcesById(id);
 		modelAndView.addObject("r", resources);
 		return modelAndView;
+	}
+	@RequestMapping("/findParent")
+	@ResponseBody
+	public List<Resources> findParent(){
+		List<Resources> parent = this.resourcesService.getParentRsources();
+		return parent;
 	}
 }

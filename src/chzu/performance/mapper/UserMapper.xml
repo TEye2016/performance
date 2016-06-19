@@ -5,8 +5,10 @@
 	<sql id="selectuser">
 		userId,
 		userName,
-		(select r.name from role r where id in (SELECT ur.role_id FROM user_role ur
-		WHERE ur.user_id=userId)) roleName,
+		(select r.name from role r where id in
+		(SELECT ur.role_id FROM user_role ur
+		WHERE ur.user_id=userId))
+		roleName,
 		userPassword,
 		userNickname,
 		userRealname,
@@ -34,9 +36,10 @@
 	</sql>
 	<!-- 根据用户名和密码获取用户 -->
 	<select id="querySingleUser" parameterType="User" resultType="User">
-		select 
-		<include refid="selectuser"/>
-		from user u where u.userName = #{username} and u.userPassword = #{userpassword}
+		select
+		<include refid="selectuser" />
+		from user u where u.userName = #{username} and u.userPassword =
+		#{userpassword}
 	</select>
 	<!-- 总记录数 -->
 	<select id="count" parameterType="User" resultType="int">
@@ -44,14 +47,15 @@
 		<where>
 			<if test="userName != null and userName != ''">
 				userName like '%${userName}%'
-				</if>
+			</if>
 			<if test="userNickname != null and userNickname != ''">
 				and userNickname like '%${userNickname}%'
-				</if>
+			</if>
 		</where>
 	</select>
 	<!-- 增加用户 -->
-	<insert id="save" parameterType="User" keyProperty="userid" useGeneratedKeys="true">
+	<insert id="save" parameterType="User" keyProperty="userid"
+		useGeneratedKeys="true">
 		insert into user( userName,
 		userPassword,
 		userNickname, userRealname,
@@ -90,18 +94,35 @@
 		#{parentnumber})
 	</insert>
 	<!-- 根据用户名查出userId -->
-	<select id="querySingleUserByName" parameterType="String" resultType="User">
-	  select
-	  <include refid="selectuser"/>
-	  from user where userName=#{userName}
+	<select id="querySingleUserByName" parameterType="String"
+		resultType="User">
+		select
+		<include refid="selectuser" />
+		from user where userName=#{userName}
 	</select>
 	<select id="findAll" resultType="User">
-		select userId,userName,userNickname,userRealname,userAddress,userPhone,userSex from user order by userId asc
+		select
+		userId,userName,userNickname,userRealname,userAddress,userPhone,userSex
+		from user order by userId asc
 	</select>
 	<select id="findAllByPage" parameterType="User">
-		select userId,userName,userNickname,userRealname from user order by userId asc
+		select
+		userId,userName,userNickname,userRealname from user order by userId
+		asc
 	</select>
 	<insert id="saveUserRole" parameterType="chzu.performance.entity.exp.RoleUser">
-		insert into user_role (user_id,role_id) values (#{userid},#{roleid})
+		insert into user_role
+		(user_id,role_id) values (#{userid},#{roleid})
 	</insert>
+	<delete id="deleteUserByIds" parameterType="java.lang.Integer">
+		delete from user
+		<where>
+		<if test="ids !=null and ids.size >0">
+			<foreach collection="list" open="and id in(" separator="," close=")"
+				item="id">
+				#{id}
+			</foreach>
+		</if>
+	</where>
+	</delete>
 </mapper>

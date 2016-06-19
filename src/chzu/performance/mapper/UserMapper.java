@@ -14,4 +14,5 @@ public interface UserMapper {
 	public void saveUserRole(RoleUser roleUser);
 	public List<User> findAll();
 	public List<User> findAllByPage();
+	public void deleteUserByIds(List<Integer> ids);
 }

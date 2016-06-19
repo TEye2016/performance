@@ -7,6 +7,8 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -52,6 +54,7 @@ public class RoleController {
 		return roles;
 	}
 	@RequestMapping("/save")
+	@ResponseBody
 	public String save(Role role,String rescid){
 		this.roleService.saveRole(role, rescid);
 		return "sucess";

@@ -98,4 +98,8 @@ public class UserController {
 			e.printStackTrace();
 		}
 	}
+	@RequestMapping("/delete")
+	public String delete(String ids){
+		return "redirect:findAll.action";
+	}
 }

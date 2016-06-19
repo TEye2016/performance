@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="chzu.performance.mapper.AnnounceAppendixMapper">
+	<insert id="save" parameterType="chzu.performance.entity.AnnounceAppendix">
+		insert into announce_appendix (aid,url,name) values(#{aid},#{url},#{name})
+	</insert>
+</mapper>
