@@ -35,7 +35,7 @@ function layer_show(w,h,title,url){
 		w=800;
 	};
 	if (h == null || h == '') {
-		h=($(window).height() - 250);
+		h=($(window).height() -50);
 	};
 	if (title == null || title == '') {
 		title=false;

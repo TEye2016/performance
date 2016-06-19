@@ -153,9 +153,7 @@
 					+ "</td>"
 					+ "<td>"
 					+ r[i].useraddress
-					+ "</td><td class='f-14 article-manage'><a"
-					+ "style='text-decoration: none' onClick='article_xiajia(this,'10001')' href='javascript:;'"
-					+ "title='删除'><i class='icon-hand-down'></i></a> <a style='text-decoration: none' class='ml-5'"
+					+ "</td><td class='f-14 article-manage'></a> <a style='text-decoration: none' class='ml-5'"
 					+ "onClick='article_edit('10001','','','资源编辑','article-edit.html')' href='javascript:;' title='修改'><i class='icon-edit'></i></a>"
 					+ "<a style='text-decoration: none' class='ml-5' onClick='article_del(this,"
 					+ r[i].id

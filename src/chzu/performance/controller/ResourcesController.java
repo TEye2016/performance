@@ -64,4 +64,11 @@ public class ResourcesController {
 	public String toFindAll(){
 		return "resources/list";
 	}
+	@RequestMapping("/edit")
+	public ModelAndView edit(Integer id){
+		ModelAndView modelAndView = new ModelAndView("resources/edit");
+		Resources resources = this.resourcesService.getResourcesById(id);
+		modelAndView.addObject("r", resources);
+		return modelAndView;
+	}
 }

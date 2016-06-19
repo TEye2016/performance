@@ -81,4 +81,9 @@ public class ResourcesServiceImpl implements ResourcesService {
 		}
 	}
 
+	@Override
+	public Resources getResourcesById(Integer id) {
+		return this.resourcesMapper.getResourcesById(id);
+	}
+
 }

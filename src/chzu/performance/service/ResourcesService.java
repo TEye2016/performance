@@ -50,4 +50,5 @@ public interface ResourcesService {
 	 */
 	public void saveResources(Resources r);
 	public void deleteByIds(String ids)throws Exception;
+	public Resources getResourcesById(Integer id);
 }

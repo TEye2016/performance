@@ -9,6 +9,7 @@ import chzu.performance.entity.User;
 import chzu.performance.entity.exp.RoleUser;
 import chzu.performance.mapper.UserMapper;
 import chzu.performance.service.UserService;
+import chzu.performance.util.Md5Util;
 import chzu.performance.util.ValidateUtil;
 @Service("userService")
 public class UserServiceImpl implements UserService{
@@ -16,6 +17,7 @@ public class UserServiceImpl implements UserService{
 	private UserMapper userMapper;
 	@Override
 	public User querySingleUser(User u) throws Exception {
+		u.setUserpassword(Md5Util.md5(u.getUserpassword()));
 		return userMapper.querySingleUser(u);
 	}
 	@Override
@@ -28,6 +30,7 @@ public class UserServiceImpl implements UserService{
 	}
 	@Override
 	public void saveUser(User u, String rids) {
+		u.setUserpassword(Md5Util.md5(u.getUserpassword()));
 		 this.userMapper.save(u);
 		 Integer userid =u.getUserid();
 		 if (ValidateUtil.isValidate(rids)) {

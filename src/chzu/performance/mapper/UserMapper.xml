@@ -71,23 +71,23 @@
 		mark,
 		status,
 		parentNumber )
-		values (#{userName},
-		#{userPassword},
-		#{userNickname}, #{userRealname},
-		#{userAge},
-		#{userSex},
-		#{userAddress}, #{userPhone}, #{userMail},
-		#{userQQ},
+		values (#{username},
+		#{userpassword},
+		#{usernickname}, #{userrealname},
+		#{userage},
+		#{usersex},
+		#{useraddress}, #{userphone}, #{usermail},
+		#{userqq},
 		#{level},
 		#{province},
 		#{city},
-		#{bankName}, #{branchBank},
-		#{subbranchBank},
-		#{openBankName},
-		#{bankAccountName}, #{bankAccount}, #{accountType},
+		#{bankname}, #{branchbank},
+		#{subbranchbank},
+		#{openbankname},
+		#{bankaccountname}, #{bankaccount}, #{accounttype},
 		#{pay},
 		#{mark},#{status},
-		#{parentNumber})
+		#{parentnumber})
 	</insert>
 	<!-- 根据用户名查出userId -->
 	<select id="querySingleUserByName" parameterType="String" resultType="User">

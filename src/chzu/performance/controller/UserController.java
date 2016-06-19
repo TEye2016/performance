@@ -1,8 +1,10 @@
 package chzu.performance.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,7 +71,7 @@ public class UserController {
 		request.getSession().invalidate();
 		return "login";
 	}
-	@RequestMapping("/tofindAll")
+	@RequestMapping("/toFindAll")
 	public String tofindAll(){
 		return "user/list";
 	}
@@ -87,8 +89,13 @@ public class UserController {
 		return modelAndView;
 	}
 	@RequestMapping("/save")
-	@ResponseBody
-	public String save(User user,String roleids){
-		return "sucess";
+	public void save(User user,String roleids,HttpServletResponse response){
+		this.userService.saveUser(user, roleids);
+		try {
+			response.getWriter().write("sucess");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

@@ -65,4 +65,9 @@
 			#{idItem}
 		</foreach>
 	</delete>
+	<select id="getResourcesById" parameterType="java.lang.Integer"
+		resultType="Resources">
+		select name,resKey,type,resUrl,description
+		from resources r where r.id = #{id}
+	</select>
 </mapper>

@@ -23,7 +23,7 @@
 				<label class="form-label col-3"><span class="c-red">*</span>用户工号：</label>
 				<div class="formControls col-5">
 					<input type="text" class="input-text" placeholder="用户工号"
-						id="username" name="username" datatype="m" nullmsg="用户工号不能为空">
+						id="username" name="username" datatype="*2-36" nullmsg="用户工号不能为空">
 				</div>
 				<div class="col-4"></div>
 			</div>
@@ -31,7 +31,7 @@
 				<label class="form-label col-3"><span class="c-red">*</span>用户密码：</label>
 				<div class="formControls col-5">
 					<input type="text" class="input-text" placeholder="密码" id="roleKey"
-						name="userpassword" datatype="m" nullmsg="用户密码不能为空">
+						name="userpassword" datatype="*2-36" nullmsg="用户密码不能为空">
 				</div>
 				<div class="col-4"></div>
 			</div>
@@ -39,7 +39,7 @@
 				<label class="form-label col-3"><span class="c-red">*</span>用户地址：</label>
 				<div class="formControls col-5">
 					<input type="text" class="input-text" placeholder="地址" id="useraddress"
-						name="useraddress" datatype="m" nullmsg="用户地址不能为空">
+						name="useraddress" datatype="*2-36" nullmsg="用户地址不能为空">
 				</div>
 				<div class="col-4"></div>
 			</div>
@@ -47,7 +47,7 @@
 				<label class="form-label col-3"><span class="c-red">*</span>用户联系方式：</label>
 				<div class="formControls col-5">
 					<input type="text" class="input-text" placeholder="联系方式"
-						id="userphone" name="userphone" datatype="m" nullmsg="联系方式不能为空">
+						id="userphone" name="userphone" datatype="*2-36" nullmsg="联系方式不能为空">
 				</div>
 				<div class="col-4"></div>
 			</div>
@@ -190,16 +190,18 @@
 						optionValue += rightoptions[i].value + ",";
 				}
 				var name = document.getElementById("name").value;
+				var username = document.getElementById("username").value;
 				var roleKey = document.getElementById("roleKey").value;
 				var useraddress = document.getElementById("useraddress").value;
 				var userSex = $("input[type='radio']:checked").val();
 				var description = document.getElementById("userphone").value;
-				$.post("role/save.action", {
+				$.post("save.action", {
+					"username":username,
 					"userrealname":name,
 					"userpassword" : roleKey,
 					"userphone" : description,
 					"useraddress":useraddress,
-					"userSex":userSex,
+					"usersex":userSex,
 					"roleids":optionValue
 				}, function(data) {
 					alert("添加成功！")

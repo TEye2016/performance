@@ -5,6 +5,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
+
+import chzu.performance.util.Md5Util;
 /**
  * 登录拦截器
  * @author ruihui.li
