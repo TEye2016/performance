@@ -23,6 +23,7 @@ import chzu.performance.entity.User;
 import chzu.performance.entity.exp.AnnounceExp;
 import chzu.performance.service.AnnounceService;
 import chzu.performance.util.DateUtil;
+import chzu.performance.util.FileUtil;
 
 /**
  * 任务相关
@@ -46,21 +47,9 @@ public class AnnounceController {
 		announceExp.setaEnd(DateUtil.stringToDate(endDate));
 		announceExp.setUserid(((User)session.getAttribute("userSession")).getUserid());
 		announceExp.setUserName(((User)session.getAttribute("userSession")).getUserrealname());
-		//获取原始文件名
-		String oldName = appendixfile.getOriginalFilename();
-		//获取后缀名
-		String appendix = oldName.substring(oldName.lastIndexOf("."));
-		//新文件名
-		String name = UUID.randomUUID().toString()+appendix;
-		File file = new File("E:/apache-tomcat-6.0.16/webapps/performance/"+name);
-		if(!file.exists()){
-			file.mkdir();
-		}
-		//向磁盘写文件
-		appendixfile.transferTo(file);
 		AnnounceAppendix announceAppendix = new AnnounceAppendix();
-		announceAppendix.setName(oldName);
-		announceAppendix.setUrl("E:/apache-tomcat-6.0.16/webapps/performance/"+name);
+		announceAppendix.setName(appendixfile.getOriginalFilename());
+		announceAppendix.setUrl(FileUtil.upFile(appendixfile));
 		this.announceService.save(announceExp, announceAppendix);
 		ModelAndView modelAndView = new ModelAndView("announce/add");
 		return modelAndView;
