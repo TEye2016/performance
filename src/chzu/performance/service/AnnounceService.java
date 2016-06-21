@@ -3,6 +3,7 @@ package chzu.performance.service;
 import java.util.List;
 
 import chzu.performance.entity.Announce;
+import chzu.performance.entity.AnnounceAppendix;
 import chzu.performance.entity.exp.AnnounceExp;
 
 public interface AnnounceService {
@@ -12,5 +13,5 @@ public interface AnnounceService {
 	 * @param announceExp
 	 * @return
 	 */
-	public Integer save(AnnounceExp announceExp);
+	public void save(AnnounceExp announceExp,AnnounceAppendix announceAppendix);
 }

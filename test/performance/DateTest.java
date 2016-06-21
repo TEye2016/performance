@@ -6,6 +6,8 @@ import java.util.Date;
 
 import org.junit.Test;
 
+import chzu.performance.util.Md5Util;
+
 public class DateTest {
 	@Test
 	public void test(){
@@ -17,5 +19,9 @@ public class DateTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	@Test
+	public void md5(){
+		System.out.println(Md5Util.md5("1"));
 	}
 }
