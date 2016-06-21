@@ -18,7 +18,7 @@ public class AnnounceServiceImpl implements AnnounceService {
 	@Autowired
 	private AnnounceAppendixMapper announceAppendixMapper;
 	@Override
-	public List<Announce> findAll() {
+	public List<AnnounceExp> findAll() {
 		return announceMapper.findAll();
 	}
 

@@ -7,7 +7,7 @@ import chzu.performance.entity.AnnounceAppendix;
 import chzu.performance.entity.exp.AnnounceExp;
 
 public interface AnnounceService {
-	public List<Announce> findAll();
+	public List<AnnounceExp> findAll();
 	/**
 	 * 保存新的任务，同时返回刚保存任务的主键
 	 * @param announceExp

@@ -3,6 +3,7 @@ package chzu.performance.controller;
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
@@ -10,9 +11,11 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -53,5 +56,11 @@ public class AnnounceController {
 		this.announceService.save(announceExp, announceAppendix);
 		ModelAndView modelAndView = new ModelAndView("announce/add");
 		return modelAndView;
+	}
+	@RequestMapping("/findAll")
+	@ResponseBody
+	public List<AnnounceExp> findAll(){
+		List<AnnounceExp> announces = this.announceService.findAll();
+		return announces;
 	}
 }

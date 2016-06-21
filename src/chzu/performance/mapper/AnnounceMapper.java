@@ -7,6 +7,6 @@ import chzu.performance.entity.exp.AnnounceExp;
 
 
 public interface AnnounceMapper {
-	public List<Announce> findAll();
+	public List<AnnounceExp> findAll();
 	public Integer save(AnnounceExp announceExp);
 }
