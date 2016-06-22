@@ -9,4 +9,5 @@ import chzu.performance.entity.exp.AnnounceExp;
 public interface AnnounceMapper {
 	public List<AnnounceExp> findAll();
 	public Integer save(AnnounceExp announceExp);
+	public AnnounceExp getAnnounceById(Integer id);
 }

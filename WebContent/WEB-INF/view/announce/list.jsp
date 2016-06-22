@@ -99,22 +99,24 @@
 		        str += "<tr class='text-c'>"
 					+ "<td><input type='checkbox' value="+r[i].id+" name='ids' class='ids'></td>"
 					+ "<td>"
-					+ r[i].username
+					+ r[i].id
 					+ "</td>"
 					+ "<td class='text-l'><u style='cursor: pointer' class='text-primary' onClick='article_edit('10001','650','','查看','article-zhang.html')"
 					+ "title='查看'>"
-					+ r[i].userrealname
+					+ r[i].userName
 					+ "</u></td>"
 					+ "<td>"
-					+ r[i].userphone
+					+ r[i].aDate-r[i].aEnd
 					+ "</td>"
 					+ "<td>"
-					+ r[i].usersex
+					+ r[i].aName
 					+ "</td>"
 					+ "<td>"
-					+ r[i].useraddress
-					+ "</td><td class='f-14 article-manage'></a> <a style='text-decoration: none' class='ml-5'"
-					+ "onClick='article_edit('10001','','','资源编辑','article-edit.html')' href='javascript:;' title='修改'><i class='icon-edit'></i></a>"
+					+ r[i].aScore
+					+ "</td>"
+					+"<td>"+lab(r[i].lab)+"</td>"
+					+"<td class='f-14 article-manage'></a> <a style='text-decoration: none' class='ml-5'"
+					+ "onClick='announce_edit("+r[i].id+")' href='javascript:;' title='查看'><i class='icon-edit'></i></a>"
 					+ "<a style='text-decoration: none' class='ml-5' onClick='article_del(this,"
 					+ r[i].id
 					+ ")' href='javascript:;'title='删除'><i class='icon-trash'></i></a></td>"
@@ -137,6 +139,15 @@
 		    }
 		});
 	}
+		function lab(i){
+			if(i == 0) return "未领取";
+			else return "已领取";
+		}
+		function announce_edit(id) {
+			var url = "view.action?id="+id;
+			var title = "任务查看";
+			layer_show('', '', title, url);
+		}
 	</script>
 </body>
 </html>

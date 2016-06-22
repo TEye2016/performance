@@ -17,4 +17,7 @@
 		values
 		(#{userid},#{aDate},#{aEnd},#{aName},#{aScore},#{aLab},#{aDetail},#{aTerm},#{aSchoolyear})
 	</insert>
+	<select id="getAnnounceById" parameterType="java.lang.Integer" resultType="chzu.performance.entity.exp.AnnounceExp">
+		select url ,append.name,<include refid="base"/> from announce a join annouce_appendix append on a.id = append.aid where a.id=#{id}
+	</select>
 </mapper>

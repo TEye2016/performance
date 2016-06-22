@@ -63,4 +63,9 @@ public class AnnounceController {
 		List<AnnounceExp> announces = this.announceService.findAll();
 		return announces;
 	}
+	@RequestMapping("/view")
+	public ModelAndView view(Integer id){
+		ModelAndView modelAndView = new ModelAndView("announce/view");
+		return modelAndView;
+	}
 }
